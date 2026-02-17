@@ -61,39 +61,6 @@ A modern, customizable Resume Builder built using **React + TypeScript** that al
 
 ---
 
-## 📂 Project Structure
-
-src/
-├── components/
-│ ├── forms/
-│ │ ├── PersonalForm.tsx
-│ │ ├── ExperienceForm.tsx
-│ │ ├── EducationForm.tsx
-│ │ ├── SkillsForm.tsx
-│ │ ├── ProjectsForm.tsx
-│ │ └── SocialForm.tsx
-│ │
-│ ├── preview/
-│ │ ├── ResumePreview.tsx
-│ │ ├── ResumePreviewTwo.tsx
-│ │ └── ResumePreviewATS.tsx
-│ │
-│ └── ui/
-│ └── AccordionSection.tsx
-│
-├── pages/
-│ └── Builder.tsx
-│
-├── data/
-│ └── initialData.ts
-│
-├── types/
-│ └── resume.ts
-│
-└── styles/
-
----
-
 ## ⚙️ Installation & Setup
 
 Clone the repository:
