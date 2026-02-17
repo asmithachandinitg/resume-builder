@@ -3,8 +3,6 @@ import type { ResumeData } from "../../types/resume";
 
 import {
   FaBriefcase,
-  FaCalendarAlt,
-  FaCalendarCheck,
   FaAlignLeft,
   FaTrash,
   FaAngleDown,

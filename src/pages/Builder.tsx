@@ -119,36 +119,48 @@ function Builder() {
     /* ================= PDF ================= */
 
     const handleDownloadPDF = () => {
-        const fileName = prompt("Enter file name");
 
-        if (fileName === null) return;
+  const fileName = prompt("Enter file name");
 
-        if (!fileName.trim()) {
-            alert("Please enter file name");
-            return;
-        }
+  if (fileName === null) return;
 
-        const element = document.querySelector(
-            ".resume-preview, .resume-two"
-        ) as HTMLElement;
+  if (!fileName.trim()) {
+    alert("Please enter file name");
+    return;
+  }
 
-        if (!element) return;
+  const element = document.querySelector(
+    ".resume-preview, .resume-two"
+  ) as HTMLElement;
 
-        const opt = {
-            margin: 0,
-            filename: `${fileName}.pdf`,
-            image: { type: "jpeg", quality: 1 },
-            html2canvas: { scale: 2, useCORS: true },
-            jsPDF: {
-                unit: "mm",
-                format: "a4",
-                orientation: "portrait",
-            },
-        };
+  if (!element) return;
 
-        html2pdf().set(opt).from(element).save();
-    };
+  const opt = {
+    margin: 0,
+    filename: `${fileName}.pdf`,
 
+    image: {
+      type: "jpeg" as const,
+      quality: 1,
+    },
+
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+    },
+
+    jsPDF: {
+      unit: "mm" as const,
+      format: "a4" as const,
+      orientation: "portrait" as const,
+    },
+  };
+
+  html2pdf()
+    .set(opt)
+    .from(element)
+    .save();
+};
     /* ================= UI ================= */
 
     return (

@@ -10,6 +10,12 @@ import {
 
 type Skills = ResumeData["skills"];
 
+type SkillArrayKey =
+  | "technical"
+  | "soft"
+  | "languages"
+  | "interests";
+
 interface Props {
   data: Skills;
   setData: (val: Skills) => void;
@@ -19,32 +25,41 @@ function SkillsForm({ data, setData }: Props) {
 
   /* ================= INPUT STATE ================= */
 
-  const [inputs, setInputs] = useState({
-    technical: "",
-    soft: "",
-    languages: "",
-    interests: "",
-  });
+const [inputs, setInputs] = useState<
+  Record<
+    "technical" |
+    "soft" |
+    "languages" |
+    "interests",
+    string
+  >
+>({
+  technical: "",
+  soft: "",
+  languages: "",
+  interests: "",
+});
+
 
   /* ================= ADD SKILL ================= */
 
-  const addSkill = (type: keyof Skills) => {
+const addSkill = (type: SkillArrayKey) => {
 
-    if (!inputs[type]) return;
+  if (!inputs[type]) return;
 
-    setData({
-      ...data,
-      [type]: [
-        ...(data[type] as string[]),
-        inputs[type],
-      ],
-    });
+  setData({
+    ...data,
+    [type]: [
+      ...data[type],
+      inputs[type],
+    ],
+  });
 
-    setInputs({
-      ...inputs,
-      [type]: "",
-    });
-  };
+  setInputs({
+    ...inputs,
+    [type]: "",
+  });
+};
 
   /* ================= REMOVE SKILL ================= */
 
