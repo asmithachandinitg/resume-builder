@@ -1,0 +1,102 @@
+/* ===== ResumePreviewATS.css ===== */
+/* ATS-friendly / plain template */
+
+.resume-preview.ats {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 44px;
+  background: #fff;
+  box-sizing: border-box;
+  color: #111827;
+  line-height: 1.55;
+}
+
+/* ---- HEADER ---- */
+.ats-name {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 4px;
+  color: #111827;
+}
+
+.ats-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  margin: 0 0 6px;
+}
+
+.ats-contact {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0 0 14px;
+}
+
+/* ---- SECTION TITLE ---- */
+.ats-section {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1.5px solid #e5e7eb;
+  padding-bottom: 4px;
+  margin: 14px 0 8px;
+  color: #111827;
+}
+
+/* ---- BLOCK ---- */
+.ats-block {
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.ats-block b {
+  font-size: 13px;
+}
+
+/* ---- ROW (title / date) ---- */
+.ats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.ats-row span {
+  font-size: 11px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+/* ---- BODY TEXT ---- */
+.ats-block p {
+  margin: 4px 0;
+  color: #374151;
+}
+
+.ats-block ul,
+.ats-block ol {
+  padding-left: 18px;
+  margin: 4px 0;
+  color: #374151;
+}
+
+.ats-block li {
+  margin-bottom: 2px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .resume-preview.ats {
+    padding: 24px 20px;
+  }
+
+  .ats-row {
+    flex-direction: column;
+    gap: 2px;
+  }
+}

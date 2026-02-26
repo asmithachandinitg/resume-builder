@@ -1,0 +1,203 @@
+/* ===== EducationForm.css ===== */
+/* Extends the same pattern as ExperienceForm.css */
+
+.experience-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.add-work-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: #9225eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  align-self: flex-start;
+  margin-bottom: 4px;
+}
+
+.add-work-btn:hover {
+  background: #7a1ec9;
+  transform: translateY(-1px);
+}
+
+.add-work-btn:active {
+  transform: translateY(0);
+}
+
+.experience-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.experience-header:hover {
+  background: #f3f4f6;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.exp-title {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arrow {
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.experience-form {
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.experience-form label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 8px;
+}
+
+.experience-form label:first-child {
+  margin-top: 0;
+}
+
+.experience-form input:not([type="checkbox"]) {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #111827;
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+}
+
+.experience-form input:focus {
+  outline: none;
+  border-color: #9225eb;
+  box-shadow: 0 0 0 3px rgba(146, 37, 235, 0.1);
+}
+
+.experience-form input:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.to-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.to-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.to-header label {
+  margin-top: 0 !important;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.checkbox input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: #9225eb;
+  cursor: pointer;
+}
+
+.experience-form .rsw-editor {
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  overflow: hidden;
+  font-size: 13px;
+  min-height: 100px;
+  transition: border-color 0.15s;
+}
+
+.experience-form .rsw-editor:focus-within {
+  border-color: #9225eb;
+  box-shadow: 0 0 0 3px rgba(146, 37, 235, 0.1);
+}
+
+.experience-form .rsw-toolbar {
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 4px 6px;
+}
+
+@media (max-width: 640px) {
+  .experience-form {
+    padding: 12px;
+  }
+
+  .add-work-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

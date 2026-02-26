@@ -1,6 +1,7 @@
 import Cropper from "react-easy-crop";
 import { useState } from "react";
 import getCroppedImg from "../../utils/cropImage";
+import "./PhotoCropper.css";
 
 type Props = {
   image: string;

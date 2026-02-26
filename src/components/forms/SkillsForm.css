@@ -1,0 +1,179 @@
+/* ===== SkillsForm.css ===== */
+
+.skills-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---- BLOCK ---- */
+.skills-block {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ---- BLOCK TITLE ---- */
+.skills-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.skills-icon {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+/* ---- TOGGLE ROW ---- */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toggle-row span {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* TOGGLE SWITCH */
+.toggle-switch {
+  position: relative;
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.toggle-switch.on {
+  background: #6d28d9;
+}
+
+.toggle-switch.off {
+  background: #d1d5db;
+}
+
+.toggle-knob {
+  position: absolute;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left 0.25s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch.on .toggle-knob {
+  left: 21px;
+}
+
+.toggle-switch.off .toggle-knob {
+  left: 3px;
+}
+
+/* ---- INPUT + ADD ROW ---- */
+.skills-input {
+  display: flex;
+  gap: 8px;
+}
+
+.skills-input input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #111827;
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  min-width: 0;
+}
+
+.skills-input input:focus {
+  outline: none;
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+}
+
+.skills-input button {
+  padding: 8px 14px;
+  background: #6d28d9;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.skills-input button:hover {
+  background: #5b21b6;
+}
+
+/* ---- CHIPS ---- */
+.skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: #ede9fe;
+  color: #5b21b6;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.chip b {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  color: #7c3aed;
+  transition: color 0.15s;
+}
+
+.chip b:hover {
+  color: #ef4444;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .skills-block {
+    padding: 12px 14px;
+  }
+
+  .skills-input {
+    flex-direction: column;
+  }
+
+  .skills-input button {
+    width: 100%;
+  }
+}

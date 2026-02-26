@@ -1,0 +1,216 @@
+/* ===== PersonalForm.css ===== */
+
+.personal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ---- LABELS ---- */
+.personal-section > label,
+.personal-section label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 10px;
+}
+
+.personal-section > label:first-child {
+  margin-top: 0;
+}
+
+/* ---- INPUTS ---- */
+.personal-section input[type="text"],
+.personal-section input:not([type="radio"]):not([type="checkbox"]):not([type="file"]) {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #111827;
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+}
+
+.personal-section input:focus {
+  outline: none;
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+}
+
+/* ---- ROW (2-col grid) ---- */
+.personal-section .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.personal-section .row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.personal-section .row label {
+  margin-top: 0;
+}
+
+/* ---- PHOTO UPLOAD ---- */
+.photo-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.photo-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 0 !important;
+}
+
+.photo-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.upload-photo-btn {
+  padding: 8px 14px;
+  background: #6d28d9;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.upload-photo-btn:hover {
+  background: #5b21b6;
+  transform: translateY(-1px);
+}
+
+.clear-photo-btn {
+  padding: 8px 14px;
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.clear-photo-btn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+  border-color: #fca5a5;
+}
+
+/* ---- EXPERIENCE LEVEL ---- */
+.exp-level {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.exp-level label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  margin-top: 0 !important;
+}
+
+.exp-level input[type="radio"] {
+  accent-color: #6d28d9;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* ---- EXPERIENCE DURATION ---- */
+.exp-duration {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.exp-duration select {
+  flex: 1;
+  min-width: 100px;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #111827;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.exp-duration select:focus {
+  outline: none;
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+}
+
+/* ---- WYSIWYG EDITOR ---- */
+.personal-section .rsw-editor {
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  overflow: hidden;
+  font-size: 13px;
+  min-height: 100px;
+  transition: border-color 0.15s;
+}
+
+.personal-section .rsw-editor:focus-within {
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+}
+
+.personal-section .rsw-toolbar {
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 4px 6px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .personal-section .row {
+    grid-template-columns: 1fr;
+  }
+
+  .exp-duration {
+    flex-direction: column;
+  }
+
+  .exp-duration select {
+    width: 100%;
+  }
+
+  .photo-actions {
+    flex-direction: column;
+  }
+
+  .upload-photo-btn,
+  .clear-photo-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

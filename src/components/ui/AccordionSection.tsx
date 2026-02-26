@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import "./AccordionSection.css";
 
 type Props = {
   title: string;

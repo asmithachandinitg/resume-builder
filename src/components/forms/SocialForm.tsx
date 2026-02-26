@@ -4,6 +4,7 @@ import { GrLinkedin } from "react-icons/gr";
 import { FaTwitterSquare } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 import { PiGlobeBold } from "react-icons/pi";
+import "./SocialForm.css";
 
 type Social = ResumeData["social"];
 

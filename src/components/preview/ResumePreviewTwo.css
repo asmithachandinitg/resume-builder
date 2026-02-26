@@ -1,0 +1,263 @@
+/* ===== ResumePreviewTwo.css ===== */
+/* Two-column resume template with sidebar */
+
+.resume-two {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100%;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  background: #fff;
+  box-sizing: border-box;
+  color: #1f2937;
+  line-height: 1.5;
+}
+
+/* ---- SIDEBAR ---- */
+.sidebar {
+  padding: 32px 20px;
+  background: #f8f6ff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar .photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 3px solid #ede9fe;
+  align-self: center;
+}
+
+.sidebar h2 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 2px;
+  line-height: 1.3;
+}
+
+.sidebar .job {
+  font-size: 11px;
+  color: #6b7280;
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+
+/* SIDEBAR SECTION TITLE */
+.sidebar .section-title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+  margin: 10px 0 6px;
+}
+
+/* CONTACT SIDE */
+.contact-side {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contact-side p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #374151;
+  margin: 0;
+  word-break: break-all;
+}
+
+.contact-side svg {
+  font-size: 11px;
+  flex-shrink: 0;
+  color: #9ca3af;
+}
+
+/* CONTACT ITEM (social links) */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #374151;
+}
+
+.contact-item a {
+  color: #374151;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+/* SKILLS SIDE (chips) */
+.skills-side {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.skills-side .chip {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+/* SIDE LIST (soft skills / languages) */
+.side-list {
+  padding-left: 14px;
+  margin: 0;
+  list-style: disc;
+}
+
+.side-list li {
+  font-size: 11px;
+  color: #374151;
+  margin-bottom: 3px;
+}
+
+/* ---- MAIN COLUMN ---- */
+.main {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MAIN SECTION TITLE */
+.main .section-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  margin: 14px 0 8px;
+}
+
+.main .section-title:first-child {
+  margin-top: 0;
+}
+
+/* BLOCK */
+.block {
+  margin-bottom: 12px;
+}
+
+/* ROW-3 */
+.row-3 {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 6px;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.row-3 b {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.row-3 .center {
+  font-size: 11px;
+  color: #6b7280;
+  text-align: center;
+}
+
+.row-3 .right {
+  font-size: 11px;
+  color: #9ca3af;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* ROW-2 */
+.row-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.row-2 b {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.row-2 .right,
+.row-2 a {
+  font-size: 11px;
+  color: #6b7280;
+  text-decoration: none;
+  word-break: break-all;
+  text-align: right;
+}
+
+.row-2 a:hover {
+  text-decoration: underline;
+}
+
+/* SUMMARY HTML */
+.summary-html {
+  font-size: 12px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.summary-html ul,
+.summary-html ol {
+  padding-left: 18px;
+  margin: 4px 0;
+}
+
+.summary-html li {
+  margin-bottom: 2px;
+}
+
+.summary-html p {
+  margin: 0 0 4px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 680px) {
+  .resume-two {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    padding: 24px 20px;
+  }
+
+  .sidebar .photo {
+    width: 72px;
+    height: 72px;
+  }
+
+  .main {
+    padding: 24px 20px;
+  }
+
+  .row-3 {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .row-3 .center,
+  .row-3 .right {
+    text-align: left;
+  }
+}

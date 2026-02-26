@@ -1,4 +1,5 @@
 import type { ResumeData } from "../../types/resume";
+import "./ResumePreviewTwo.css";
 
 import {
   FaEnvelope,

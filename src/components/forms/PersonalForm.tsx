@@ -9,6 +9,7 @@ import { HiLocationMarker } from "react-icons/hi";
 import { FaMobileRetro } from "react-icons/fa6";
 import { GiFlowerStar } from "react-icons/gi";
 import { FaUserTie } from "react-icons/fa";
+import "./PersonalForm.css";
 
 import {
   Editor,

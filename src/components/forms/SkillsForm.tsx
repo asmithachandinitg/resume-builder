@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { ResumeData } from "../../types/resume";
+import "./SkillsForm.css";
 
 import {
   FaLaptopCode,
