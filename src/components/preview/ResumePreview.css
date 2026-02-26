@@ -27,21 +27,21 @@
 }
 
 .preview-header h1 {
-  font-size: 26px;
+  font-size: 1.85em;
   font-weight: 800;
   margin: 0 0 4px;
   line-height: 1.2;
 }
 
 .job-title {
-  font-size: 13px;
+  font-size: 0.93em;
   font-weight: 500;
   color: #6b7280;
   margin: 0 0 10px;
 }
 
 .about {
-  font-size: 13px;
+  font-size: 0.93em;
   color: #374151;
   margin-bottom: 12px;
   line-height: 1.55;
@@ -66,14 +66,14 @@
 
 .contact-item {
   display: flex;
-  align-items: center;
+  align-items: 0.85em;
   gap: 5px;
   font-size: 12px;
   color: #374151;
 }
 
 .contact-item svg {
-  font-size: 12px;
+  font-size: 0.85em;
   flex-shrink: 0;
   color: #6b7280;
 }
@@ -89,7 +89,7 @@
 
 /* ---- SECTION TITLE ---- */
 .section-title {
-  font-size: 11px;
+  font-size: 0.78em;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -112,18 +112,18 @@
 }
 
 .row-3 .left {
-  font-size: 13px;
+  font-size: 0.93em;
   font-weight: 700;
 }
 
 .row-3 .center {
-  font-size: 12px;
+  font-size: 0.85em;
   color: #6b7280;
   text-align: center;
 }
 
 .row-3 .right {
-  font-size: 11px;
+  font-size: 0.78em;
   color: #9ca3af;
   white-space: nowrap;
   text-align: right;
@@ -140,12 +140,12 @@
 }
 
 .row-2 .left {
-  font-size: 13px;
+  font-size: 0.93em;
   font-weight: 700;
 }
 
 .row-2 .right {
-  font-size: 11px;
+  font-size: 0.78em;
   color: #6b7280;
   word-break: break-all;
   text-align: right;
@@ -154,7 +154,7 @@
 .row-2 a {
   color: #6b7280;
   text-decoration: none;
-  font-size: 11px;
+  font-size: 0.78em;
 }
 
 .row-2 a:hover {
@@ -163,14 +163,14 @@
 
 /* ---- SKILLS ---- */
 .skills-inline p {
-  font-size: 12px;
+  font-size: 0.85em;
   margin: 4px 0;
   line-height: 1.5;
 }
 
 /* ---- SUMMARY HTML ---- */
 .summary-html {
-  font-size: 12px;
+  font-size: 0.85em;
   color: #374151;
   line-height: 1.6;
 }
@@ -216,6 +216,7 @@
   }
 
   .preview-header h1 {
-    font-size: 20px;
+    font-size: 1.4em;
   }
 }
+

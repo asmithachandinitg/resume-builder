@@ -14,28 +14,28 @@
 
 /* ---- HEADER ---- */
 .ats-name {
-  font-size: 24px;
+  font-size: 1.7em;
   font-weight: 800;
   margin: 0 0 4px;
   color: #111827;
 }
 
 .ats-title {
-  font-size: 13px;
+  font-size: 0.93em;
   font-weight: 500;
   color: #6b7280;
   margin: 0 0 6px;
 }
 
 .ats-contact {
-  font-size: 12px;
+  font-size: 0.85em;
   color: #6b7280;
   margin: 0 0 14px;
 }
 
 /* ---- SECTION TITLE ---- */
 .ats-section {
-  font-size: 12px;
+  font-size: 0.85em;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -48,12 +48,12 @@
 /* ---- BLOCK ---- */
 .ats-block {
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 0.85em;
   line-height: 1.55;
 }
 
 .ats-block b {
-  font-size: 13px;
+  font-size: 0.93em;
 }
 
 /* ---- ROW (title / date) ---- */
@@ -67,7 +67,7 @@
 }
 
 .ats-row span {
-  font-size: 11px;
+  font-size: 0.78em;
   color: #9ca3af;
   white-space: nowrap;
 }

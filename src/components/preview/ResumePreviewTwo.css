@@ -34,7 +34,7 @@
 }
 
 .sidebar h2 {
-  font-size: 16px;
+  font-size: 1.14em;
   font-weight: 800;
   color: #111827;
   margin: 0 0 2px;
@@ -42,7 +42,7 @@
 }
 
 .sidebar .job {
-  font-size: 11px;
+  font-size: 0.78em;
   color: #6b7280;
   margin: 0 0 8px;
   font-weight: 500;
@@ -50,7 +50,7 @@
 
 /* SIDEBAR SECTION TITLE */
 .sidebar .section-title {
-  font-size: 10px;
+  font-size: 0.71em;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -69,14 +69,14 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: 0.71em;
   color: #374151;
   margin: 0;
   word-break: break-all;
 }
 
 .contact-side svg {
-  font-size: 11px;
+  font-size: 0.71em;
   flex-shrink: 0;
   color: #9ca3af;
 }
@@ -86,7 +86,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: 0.71em;
   color: #374151;
 }
 
@@ -111,7 +111,7 @@
   display: inline-block;
   padding: 3px 8px;
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 0.71em;
   font-weight: 600;
   background: #ede9fe;
   color: #5b21b6;
@@ -125,7 +125,7 @@
 }
 
 .side-list li {
-  font-size: 11px;
+  font-size: 0.71em;
   color: #374151;
   margin-bottom: 3px;
 }
@@ -139,7 +139,7 @@
 
 /* MAIN SECTION TITLE */
 .main .section-title {
-  font-size: 11px;
+  font-size: 0.71em;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -166,18 +166,18 @@
 }
 
 .row-3 b {
-  font-size: 13px;
+  font-size: 0.93em;
   font-weight: 700;
 }
 
 .row-3 .center {
-  font-size: 11px;
+  font-size: 0.71em;
   color: #6b7280;
   text-align: center;
 }
 
 .row-3 .right {
-  font-size: 11px;
+  font-size: 0.71em;
   color: #9ca3af;
   white-space: nowrap;
   text-align: right;
@@ -200,7 +200,7 @@
 
 .row-2 .right,
 .row-2 a {
-  font-size: 11px;
+  font-size: 0.71em;
   color: #6b7280;
   text-decoration: none;
   word-break: break-all;
@@ -213,7 +213,7 @@
 
 /* SUMMARY HTML */
 .summary-html {
-  font-size: 12px;
+  font-size: 0.85em;
   color: #374151;
   line-height: 1.6;
 }

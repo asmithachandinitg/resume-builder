@@ -11,7 +11,7 @@
   align-items: center;
   gap: 6px;
   padding: 9px 18px;
-  background: #2563eb;
+  background: #6d28d9;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -24,7 +24,7 @@
 }
 
 .add-work-btn:hover {
-  background: #1d4ed8;
+  background: #5b21b6;
   transform: translateY(-1px);
 }
 
