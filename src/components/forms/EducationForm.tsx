@@ -9,6 +9,8 @@ import {
   FaTrash,
   FaAngleDown,
   FaAngleUp,
+  FaMapMarkerAlt,
+  FaStickyNote,
 } from "react-icons/fa";
 
 import {
@@ -56,11 +58,13 @@ function EducationForm({
     const newItem: Education = {
       school: "",
       degree: "",
+      location: "",
       from: "",
       to: "",
       current: false,
       summary: "",
-    };
+      subtext: "",
+    } as any;
 
     setData([...data, newItem]);
 
@@ -88,7 +92,7 @@ function EducationForm({
     value: Education[K]
   ) => {
     const updated = [...data];
-    updated[index][field] = value;
+    updated[index] = { ...updated[index], [field]: value };
     setData(updated);
   };
 
@@ -129,8 +133,7 @@ function EducationForm({
                   toggleOpen(index)
                 }
               >
-                {edu.degree ||
-                  "New Education"}
+                {edu.school || edu.degree || "New Education"}
               </span>
 
               <span
@@ -159,7 +162,7 @@ function EducationForm({
                       color: "#9225eb",
                     }}
                   />
-                  School
+                  School / Institution
                 </label>
 
                 <input
@@ -170,6 +173,21 @@ function EducationForm({
                       "school",
                       e.target.value
                     )
+                  }
+                />
+
+                {/* LOCATION */}
+                <label>
+                  <FaMapMarkerAlt
+                    style={{ color: "#059669" }}
+                  />
+                  Location
+                </label>
+
+                <input
+                  value={(edu as any).location || ""}
+                  onChange={(e) =>
+                    handleChange(index, "location" as any, e.target.value)
                   }
                 />
 
@@ -260,33 +278,47 @@ function EducationForm({
 
                 </div>
 
-                {/* SUMMARY */}
-            <label>
-  <FaAlignLeft style={{ color: "#ec4899" }} />
-  Summary
-</label>
+                {/* SUBTEXT (optional) */}
+                <label>
+                  <FaStickyNote style={{ color: "#f59e0b" }} />
+                  Subtext <span style={{ color: "#9ca3af", fontWeight: 400, fontSize: "0.85em" }}>(optional)</span>
+                </label>
 
-<EditorProvider>
-  <Editor
-    value={edu.summary}
-    onChange={(e) =>
-      handleChange(
-        index,
-        "summary",
-        e.target.value
-      )
-    }
-  >
-    <Toolbar>
-      <BtnBold />
-      <BtnItalic />
-      <BtnUnderline />
-      <BtnBulletList />
-      <BtnNumberedList />
-      <BtnLink />
-    </Toolbar>
-  </Editor>
-</EditorProvider>
+                <input
+                  placeholder="e.g. GPA: 3.8 · Dean's List"
+                  value={(edu as any).subtext || ""}
+                  onChange={(e) =>
+                    handleChange(index, "subtext" as any, e.target.value)
+                  }
+                />
+
+                {/* SUMMARY */}
+                <label>
+                  <FaAlignLeft style={{ color: "#ec4899" }} />
+                  Summary
+                </label>
+
+                <EditorProvider>
+                  <Editor
+                    value={edu.summary}
+                    onChange={(e) =>
+                      handleChange(
+                        index,
+                        "summary",
+                        e.target.value
+                      )
+                    }
+                  >
+                    <Toolbar>
+                      <BtnBold />
+                      <BtnItalic />
+                      <BtnUnderline />
+                      <BtnBulletList />
+                      <BtnNumberedList />
+                      <BtnLink />
+                    </Toolbar>
+                  </Editor>
+                </EditorProvider>
 
               </div>
             )}

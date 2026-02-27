@@ -11,6 +11,9 @@ import {
   FaGithub
 } from "react-icons/fa";
 
+import type { CustomSection } from "../forms/CustomSectionForm";
+import type { InternshipEntry } from "../forms/InternshipForm";
+
 const fontFamilyMap: Record<string, string> = {
   Satoshi: "Satoshi, sans-serif",
   Inter: "Inter, sans-serif",
@@ -30,13 +33,17 @@ type Props = {
   color: string;
   fontFamily: string;
   fontSize: string;
+  customSections?: CustomSection[];
+  internships?: InternshipEntry[];
 };
 
 function ResumePreview({
   data,
   color,
-    fontFamily,
+  fontFamily,
   fontSize,
+  customSections = [],
+  internships = [],
 }: Props) {
 
   const {
@@ -298,30 +305,97 @@ function ResumePreview({
           {experience.map((exp, i) => (
             <div key={i} className="block">
 
-              <div className="row-3">
+              {/* Company name as top line */}
+              {(exp as any).company && (
+                <div className="row-2" style={{ marginBottom: 2 }}>
+                  <b className="left" style={{ fontSize: "1.05em" }}>
+                    {(exp as any).company}
+                  </b>
+                  <span className="right" style={{ color: "#6b7280" }}>
+                    {formatDate(exp.from, exp.to, exp.current)}
+                  </span>
+                </div>
+              )}
 
-                <b className="left">
+              <div className="row-3">
+                <span className="left" style={{ color: "#374151" }}>
                   {exp.title}
-                </b>
+                </span>
 
                 <span className="center">
                   {exp.CurrentCity}
                 </span>
 
-                <span className="right">
-                  {formatDate(
-                    exp.from,
-                    exp.to,
-                    exp.current
-                  )}
-                </span>
-
+                {/* Only show date here if no company name shown above */}
+                {!(exp as any).company && (
+                  <span className="right">
+                    {formatDate(exp.from, exp.to, exp.current)}
+                  </span>
+                )}
               </div>
+
+              {/* Subtext */}
+              {(exp as any).subtext && (
+                <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                  {(exp as any).subtext}
+                </p>
+              )}
+
               <div
                 className="summary-html"
                 dangerouslySetInnerHTML={{
                   __html: exp.summary,
                 }}
+              />
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* ================= INTERNSHIP ================= */}
+
+      {internships.length > 0 && (
+        <>
+          <SectionTitle
+            title="INTERNSHIP"
+            color={themeColor}
+          />
+
+          {internships.map((intern, i) => (
+            <div key={i} className="block">
+
+              {intern.company && (
+                <div className="row-2" style={{ marginBottom: 2 }}>
+                  <b className="left" style={{ fontSize: "1.05em" }}>
+                    {intern.company}
+                  </b>
+                  <span className="right" style={{ color: "#6b7280" }}>
+                    {formatDate(intern.from, intern.to, intern.current)}
+                  </span>
+                </div>
+              )}
+
+              <div className="row-3">
+                <span className="left" style={{ color: "#374151" }}>
+                  {intern.title}
+                </span>
+                <span className="center">{intern.CurrentCity}</span>
+                {!intern.company && (
+                  <span className="right">
+                    {formatDate(intern.from, intern.to, intern.current)}
+                  </span>
+                )}
+              </div>
+
+              {intern.subtext && (
+                <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                  {intern.subtext}
+                </p>
+              )}
+
+              <div
+                className="summary-html"
+                dangerouslySetInnerHTML={{ __html: intern.summary }}
               />
             </div>
           ))}
@@ -343,11 +417,11 @@ function ResumePreview({
               <div className="row-3">
 
                 <b className="left">
-                  {edu.degree}
+                  {edu.school}
                 </b>
 
                 <span className="center">
-                  {edu.school}
+                  {(edu as any).location || ""}
                 </span>
 
                 <span className="right">
@@ -359,6 +433,19 @@ function ResumePreview({
                 </span>
 
               </div>
+
+              {edu.degree && (
+                <p style={{ margin: "2px 0 2px", color: "#374151" }}>
+                  {edu.degree}
+                </p>
+              )}
+
+              {/* Subtext only if filled */}
+              {(edu as any).subtext && (
+                <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                  {(edu as any).subtext}
+                </p>
+              )}
 
               <div
                 className="summary-html"
@@ -412,6 +499,40 @@ function ResumePreview({
             </div>
           ))}
         </>
+      )}
+
+      {/* ================= CUSTOM SECTIONS ================= */}
+
+      {customSections.map((section, si) =>
+        section.title || section.items.length > 0 ? (
+          <div key={si}>
+            <SectionTitle
+              title={section.title.toUpperCase() || "CUSTOM SECTION"}
+              color={themeColor}
+            />
+
+            {section.items.map((item, ii) => (
+              <div key={ii} className="block">
+                {item.heading && (
+                  <div className="row-2">
+                    <b className="left">{item.heading}</b>
+                  </div>
+                )}
+                {item.subtext && (
+                  <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                    {item.subtext}
+                  </p>
+                )}
+                {item.summary && (
+                  <div
+                    className="summary-html"
+                    dangerouslySetInnerHTML={{ __html: item.summary }}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        ) : null
       )}
 
     </div>

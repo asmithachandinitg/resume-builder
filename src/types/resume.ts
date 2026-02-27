@@ -20,6 +20,8 @@ export interface Experience {
   to: string;
   current: boolean;
   summary: string;
+  company: string;
+  subtext: string;
 }
 
 export interface Education {

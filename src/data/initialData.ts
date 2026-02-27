@@ -31,6 +31,8 @@ experienceMonths: 0,
       from: "2008-02-01",
       to: "",
       current: true,
+      company: "google",
+      subtext: "",
 
       summary: `Led multiple city park development projects from planning to execution.
 Managed cross-department coordination and community outreach programs.
@@ -43,6 +45,8 @@ Improved public engagement through strategic recreational initiatives.`,
       from: "2012-01-01",
       to: "2018-01-01",
       current: false,
+      company: "yahoo",
+      subtext: "",
 
       summary: `Represented community interests in local government decisions.
 Collaborated with city departments to improve civic services.

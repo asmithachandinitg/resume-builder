@@ -1,5 +1,7 @@
 import type { ResumeData } from "../../types/resume";
 import "./ResumePreviewATS.css";
+import type { CustomSection } from "../forms/CustomSectionForm";
+import type { InternshipEntry } from "../forms/InternshipForm";
 
 /* ================= FONT MAPS ================= */
 
@@ -21,12 +23,16 @@ type Props = {
   color: string;
   fontFamily: string;
   fontSize: string;
+  customSections?: CustomSection[];
+  internships?: InternshipEntry[];
 };
 
 function ResumePreviewATS({
   data,
   fontFamily,
   fontSize,
+  customSections = [],
+  internships = [],
 }: Props) {
 
   const {
@@ -70,10 +76,8 @@ function ResumePreviewATS({
     <div
       className="resume-preview ats"
       style={{
-        fontFamily:
-          fontFamilyMap[fontFamily],
-        fontSize:
-          fontSizeMap[fontSize],
+        fontFamily: fontFamilyMap[fontFamily],
+        fontSize: fontSizeMap[fontSize],
       }}
     >
 
@@ -117,22 +121,69 @@ function ResumePreviewATS({
           {experience.map((exp, i) => (
             <div key={i} className="ats-block">
 
+              {/* Company as first line */}
+              {(exp as any).company && (
+                <div className="ats-row">
+                  <b>{(exp as any).company}</b>
+                  <span>{formatDate(exp.from, exp.to, exp.current)}</span>
+                </div>
+              )}
+
               <div className="ats-row">
-                <b>{exp.title}</b>
-                <span>
-                  {formatDate(
-                    exp.from,
-                    exp.to,
-                    exp.current
-                  )}
-                </span>
+                <span style={{ color: "#374151" }}>{exp.title}{exp.CurrentCity ? ` · ${exp.CurrentCity}` : ""}</span>
+                {!(exp as any).company && (
+                  <span>{formatDate(exp.from, exp.to, exp.current)}</span>
+                )}
               </div>
+
+              {(exp as any).subtext && (
+                <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                  {(exp as any).subtext}
+                </p>
+              )}
 
               <div
                 dangerouslySetInnerHTML={{
                   __html: exp.summary,
                 }}
               />
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* ===== INTERNSHIP ===== */}
+
+      {internships.length > 0 && (
+        <>
+          <SectionTitle title="Internship" />
+
+          {internships.map((intern, i) => (
+            <div key={i} className="ats-block">
+
+              {intern.company && (
+                <div className="ats-row">
+                  <b>{intern.company}</b>
+                  <span>{formatDate(intern.from, intern.to, intern.current)}</span>
+                </div>
+              )}
+
+              <div className="ats-row">
+                <span style={{ color: "#374151" }}>
+                  {intern.title}{intern.CurrentCity ? ` · ${intern.CurrentCity}` : ""}
+                </span>
+                {!intern.company && (
+                  <span>{formatDate(intern.from, intern.to, intern.current)}</span>
+                )}
+              </div>
+
+              {intern.subtext && (
+                <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                  {intern.subtext}
+                </p>
+              )}
+
+              <div dangerouslySetInnerHTML={{ __html: intern.summary }} />
             </div>
           ))}
         </>
@@ -148,17 +199,22 @@ function ResumePreviewATS({
             <div key={i} className="ats-block">
 
               <div className="ats-row">
-                <b>{edu.degree}</b>
+                <b>{edu.school}</b>
                 <span>
-                  {formatDate(
-                    edu.from,
-                    edu.to,
-                    edu.current
-                  )}
+                  {formatDate(edu.from, edu.to, edu.current)}
                 </span>
               </div>
 
-              <p>{edu.school}</p>
+              <p style={{ margin: "2px 0" }}>
+                {edu.degree}
+                {(edu as any).location ? ` · ${(edu as any).location}` : ""}
+              </p>
+
+              {(edu as any).subtext && (
+                <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                  {(edu as any).subtext}
+                </p>
+              )}
 
             </div>
           ))}
@@ -197,6 +253,30 @@ function ResumePreviewATS({
             </div>
           ))}
         </>
+      )}
+
+      {/* ===== CUSTOM SECTIONS ===== */}
+
+      {customSections.map((section, si) =>
+        section.title || section.items.length > 0 ? (
+          <div key={si}>
+            <SectionTitle title={section.title || "Custom Section"} />
+
+            {section.items.map((item, ii) => (
+              <div key={ii} className="ats-block">
+                {item.heading && <b>{item.heading}</b>}
+                {item.subtext && (
+                  <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em" }}>
+                    {item.subtext}
+                  </p>
+                )}
+                {item.summary && (
+                  <div dangerouslySetInnerHTML={{ __html: item.summary }} />
+                )}
+              </div>
+            ))}
+          </div>
+        ) : null
       )}
 
     </div>

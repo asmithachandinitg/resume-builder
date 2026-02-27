@@ -11,6 +11,7 @@ import EducationForm from "../components/forms/EducationForm";
 import SkillsForm from "../components/forms/SkillsForm";
 import SocialForm from "../components/forms/SocialForm";
 import ProjectsForm from "../components/forms/ProjectsForm";
+import CustomSectionForm from "../components/forms/CustomSectionForm";
 
 /* PREVIEW */
 import ResumePreview from "../components/preview/ResumePreview";
@@ -495,6 +496,37 @@ function Builder() {
                                             );
                                         }
                                     )}
+
+                                    {/* CUSTOM COLOR */}
+                                    <label
+                                        className={`theme-circle custom-color-circle ${
+                                            !Object.keys(colorMap).includes(color) ? "active" : ""
+                                        }`}
+                                        title="Custom color"
+                                        style={{
+                                            background: !Object.keys(colorMap).includes(color)
+                                                ? color
+                                                : "conic-gradient(red, yellow, lime, aqua, blue, magenta, red)",
+                                            cursor: "pointer",
+                                            position: "relative",
+                                            overflow: "hidden",
+                                        }}
+                                    >
+                                        {!Object.keys(colorMap).includes(color) && "✓"}
+                                        <input
+                                            type="color"
+                                            value={!Object.keys(colorMap).includes(color) ? color : "#6d28d9"}
+                                            onChange={(e) => setColor(e.target.value)}
+                                            style={{
+                                                position: "absolute",
+                                                inset: 0,
+                                                opacity: 0,
+                                                cursor: "pointer",
+                                                width: "100%",
+                                                height: "100%",
+                                            }}
+                                        />
+                                    </label>
 
                                 </div>
                             </div>

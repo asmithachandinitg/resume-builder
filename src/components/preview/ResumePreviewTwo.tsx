@@ -11,6 +11,9 @@ import {
   FaGithub,
 } from "react-icons/fa";
 
+import type { CustomSection } from "../forms/CustomSectionForm";
+import type { InternshipEntry } from "../forms/InternshipForm";
+
 const fontFamilyMap: Record<string, string> = {
   Satoshi: "Satoshi, sans-serif",
   Inter: "Inter, sans-serif",
@@ -29,13 +32,17 @@ type Props = {
   color: string;
   fontFamily: string;
   fontSize: string;
+  customSections?: CustomSection[];
+  internships?: InternshipEntry[];
 };
 
 function ResumePreviewTwo({
   data,
   color,
-   fontFamily,
+  fontFamily,
   fontSize,
+  customSections = [],
+  internships = [],
 }: Props) {
 
   const {
@@ -369,38 +376,94 @@ function ResumePreviewTwo({
               color={themeColor}
             />
 
-            {experience.map(
-              (exp, i) => (
-                <div
-                  key={i}
-                  className="block"
-                >
+            {experience.map((exp, i) => (
+              <div key={i} className="block">
 
-                  <div className="row-3">
-                    <b>{exp.title}</b>
-
-                    <span className="center">
-                      {exp.CurrentCity}
-                    </span>
-
-                    <span className="right">
-                      {formatDate(
-                        exp.from,
-                        exp.to,
-                        exp.current
-                      )}
+                {/* Company as first line */}
+                {(exp as any).company && (
+                  <div className="row-2" style={{ marginBottom: 2 }}>
+                    <b style={{ fontSize: "1.05em" }}>{(exp as any).company}</b>
+                    <span className="right" style={{ color: "#6b7280" }}>
+                      {formatDate(exp.from, exp.to, exp.current)}
                     </span>
                   </div>
+                )}
 
-                  <div
-                    className="summary-html"
-                    dangerouslySetInnerHTML={{
-                      __html: exp.summary,
-                    }}
-                  />
+                <div className="row-3">
+                  <span>{exp.title}</span>
+
+                  <span className="center">
+                    {exp.CurrentCity}
+                  </span>
+
+                  {!(exp as any).company && (
+                    <span className="right">
+                      {formatDate(exp.from, exp.to, exp.current)}
+                    </span>
+                  )}
                 </div>
-              )
-            )}
+
+                {/* Subtext */}
+                {(exp as any).subtext && (
+                  <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                    {(exp as any).subtext}
+                  </p>
+                )}
+
+                <div
+                  className="summary-html"
+                  dangerouslySetInnerHTML={{
+                    __html: exp.summary,
+                  }}
+                />
+              </div>
+            ))}
+          </>
+        )}
+
+        {/* INTERNSHIP */}
+
+        {internships.length > 0 && (
+          <>
+            <SectionTitle
+              title="Internship"
+              color={themeColor}
+            />
+
+            {internships.map((intern, i) => (
+              <div key={i} className="block">
+
+                {intern.company && (
+                  <div className="row-2" style={{ marginBottom: 2 }}>
+                    <b style={{ fontSize: "1.05em" }}>{intern.company}</b>
+                    <span className="right" style={{ color: "#6b7280" }}>
+                      {formatDate(intern.from, intern.to, intern.current)}
+                    </span>
+                  </div>
+                )}
+
+                <div className="row-3">
+                  <span>{intern.title}</span>
+                  <span className="center">{intern.CurrentCity}</span>
+                  {!intern.company && (
+                    <span className="right">
+                      {formatDate(intern.from, intern.to, intern.current)}
+                    </span>
+                  )}
+                </div>
+
+                {intern.subtext && (
+                  <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                    {intern.subtext}
+                  </p>
+                )}
+
+                <div
+                  className="summary-html"
+                  dangerouslySetInnerHTML={{ __html: intern.summary }}
+                />
+              </div>
+            ))}
           </>
         )}
 
@@ -417,22 +480,29 @@ function ResumePreviewTwo({
               <div key={i} className="block">
 
                 <div className="row-3">
-
-                  <b>{edu.degree}</b>
+                  <b>{edu.school}</b>
 
                   <span className="center">
-                    {edu.school}
+                    {(edu as any).location || ""}
                   </span>
 
                   <span className="right">
-                    {formatDate(
-                      edu.from,
-                      edu.to,
-                      edu.current
-                    )}
+                    {formatDate(edu.from, edu.to, edu.current)}
                   </span>
-
                 </div>
+
+                {edu.degree && (
+                  <p style={{ margin: "2px 0 2px", color: "#374151" }}>
+                    {edu.degree}
+                  </p>
+                )}
+
+                {/* Subtext only if filled */}
+                {(edu as any).subtext && (
+                  <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                    {(edu as any).subtext}
+                  </p>
+                )}
 
                 {edu.summary && (
                   <div
@@ -441,7 +511,6 @@ function ResumePreviewTwo({
                       __html: edu.summary,
                     }}
                   />
-
                 )}
 
               </div>
@@ -458,37 +527,62 @@ function ResumePreviewTwo({
               color={themeColor}
             />
 
-            {projects.map(
-              (p, i) => (
-                <div
-                  key={i}
-                  className="block"
-                >
+            {projects.map((p, i) => (
+              <div key={i} className="block">
 
-                  <div className="row-2">
-                    <b>{p.title}</b>
+                <div className="row-2">
+                  <b>{p.title}</b>
 
-                    {p.link && (
-                      <a
-                        href={p.link}
-                        target="_blank"
-                        className="right"
-                      >
-                        {p.link}
-                      </a>
-                    )}
-                  </div>
-
-                  <div
-                    className="summary-html"
-                    dangerouslySetInnerHTML={{
-                      __html: p.summary,
-                    }}
-                  />
+                  {p.link && (
+                    <a
+                      href={p.link}
+                      target="_blank"
+                      className="right"
+                    >
+                      {p.link}
+                    </a>
+                  )}
                 </div>
-              )
-            )}
+
+                <div
+                  className="summary-html"
+                  dangerouslySetInnerHTML={{
+                    __html: p.summary,
+                  }}
+                />
+              </div>
+            ))}
           </>
+        )}
+
+        {/* ================= CUSTOM SECTIONS ================= */}
+
+        {customSections.map((section, si) =>
+          section.title || section.items.length > 0 ? (
+            <div key={si}>
+              <SectionTitle
+                title={section.title || "Custom Section"}
+                color={themeColor}
+              />
+
+              {section.items.map((item, ii) => (
+                <div key={ii} className="block">
+                  {item.heading && <b>{item.heading}</b>}
+                  {item.subtext && (
+                    <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+                      {item.subtext}
+                    </p>
+                  )}
+                  {item.summary && (
+                    <div
+                      className="summary-html"
+                      dangerouslySetInnerHTML={{ __html: item.summary }}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : null
         )}
 
       </div>

@@ -4,6 +4,7 @@ import "./ExperienceForm.css";
 
 import {
   FaBriefcase,
+  FaBuilding,
   FaMapMarkerAlt,
   FaCalendarAlt,
   FaCalendarCheck,
@@ -11,6 +12,7 @@ import {
   FaAlignLeft,
   FaAngleDown,
   FaAngleUp,
+  FaStickyNote,
 } from "react-icons/fa";
 
 import {
@@ -57,11 +59,13 @@ function ExperienceForm({
   const addWork = () => {
     const newItem: Experience = {
       title: "",
+      company: "",
       CurrentCity: "",
       from: "",
       to: "",
       current: false,
       summary: "",
+      subtext: "",
     };
 
     setData([...data, newItem]);
@@ -95,7 +99,7 @@ function ExperienceForm({
     value: Experience[K]
   ) => {
     const updated = [...data];
-    updated[index][field] = value;
+    updated[index] = { ...updated[index], [field]: value };
     setData(updated);
   };
 
@@ -142,8 +146,7 @@ function ExperienceForm({
                   toggleOpen(index)
                 }
               >
-                {exp.title ||
-                  "New Experience"}
+                {exp.company || exp.title || "New Experience"}
               </span>
 
               {/* ARROW */}
@@ -166,6 +169,21 @@ function ExperienceForm({
             {isOpen && (
               <div className="experience-form">
 
+                {/* COMPANY NAME */}
+                <label>
+                  <FaBuilding
+                    style={{ color: "#0891b2" }}
+                  />
+                  Company Name
+                </label>
+
+                <input
+                  value={(exp as any).company || ""}
+                  onChange={(e) =>
+                    handleChange(index, "company" as any, e.target.value)
+                  }
+                />
+
                 {/* TITLE */}
                 <label>
                   <FaBriefcase
@@ -173,7 +191,7 @@ function ExperienceForm({
                       color: "#6d28d9",
                     }}
                   />
-                  Title
+                  Job Title
                 </label>
 
                 <input
@@ -194,7 +212,7 @@ function ExperienceForm({
                       color: "#059669",
                     }}
                   />
-                  Current city
+                  Location
                 </label>
 
                 <input
@@ -278,34 +296,47 @@ function ExperienceForm({
 
                 </div>
 
+                {/* SUBTEXT (optional) */}
+                <label>
+                  <FaStickyNote style={{ color: "#f59e0b" }} />
+                  Subtext <span style={{ color: "#9ca3af", fontWeight: 400, fontSize: "0.85em" }}>(optional)</span>
+                </label>
+
+                <input
+                  placeholder="e.g. Internship · Full-time · Remote"
+                  value={(exp as any).subtext || ""}
+                  onChange={(e) =>
+                    handleChange(index, "subtext" as any, e.target.value)
+                  }
+                />
+
                 {/* SUMMARY */}
-<label>
-  <FaAlignLeft style={{ color: "#ec4899" }} />
-  Summary
-</label>
+                <label>
+                  <FaAlignLeft style={{ color: "#ec4899" }} />
+                  Summary
+                </label>
 
-<EditorProvider>
-  <Editor
-    value={exp.summary}
-    onChange={(e) =>
-      handleChange(
-        index,
-        "summary",
-        e.target.value
-      )
-    }
-  >
-    <Toolbar>
-      <BtnBold />
-      <BtnItalic />
-      <BtnUnderline />
-      <BtnBulletList />
-      <BtnNumberedList />
-      <BtnLink />
-    </Toolbar>
-  </Editor>
-</EditorProvider>
-
+                <EditorProvider>
+                  <Editor
+                    value={exp.summary}
+                    onChange={(e) =>
+                      handleChange(
+                        index,
+                        "summary",
+                        e.target.value
+                      )
+                    }
+                  >
+                    <Toolbar>
+                      <BtnBold />
+                      <BtnItalic />
+                      <BtnUnderline />
+                      <BtnBulletList />
+                      <BtnNumberedList />
+                      <BtnLink />
+                    </Toolbar>
+                  </Editor>
+                </EditorProvider>
 
               </div>
             )}

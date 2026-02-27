@@ -240,9 +240,12 @@ function PersonalForm({ data, setData }: Props) {
 
       {/* ================= EXPERIENCE LEVEL ================= */}
 
-      <label> <FaUserTie
+      <label>
+        <FaUserTie
           style={{ color: "#6d28d9" }}
-        /> Experience Level</label>
+        />
+        Experience Level
+      </label>
 
       <div className="exp-level">
 
@@ -250,13 +253,10 @@ function PersonalForm({ data, setData }: Props) {
           <input
             type="radio"
             checked={
-              data.experienceLevel ===
-              "fresher"
+              data.experienceLevel === "fresher"
             }
             onChange={() =>
-              updateExperienceLevel(
-                "fresher"
-              )
+              updateExperienceLevel("fresher")
             }
           />
           Fresher
@@ -266,13 +266,10 @@ function PersonalForm({ data, setData }: Props) {
           <input
             type="radio"
             checked={
-              data.experienceLevel ===
-              "experienced"
+              data.experienceLevel === "experienced"
             }
             onChange={() =>
-              updateExperienceLevel(
-                "experienced"
-              )
+              updateExperienceLevel("experienced")
             }
           />
           Experienced
@@ -282,60 +279,39 @@ function PersonalForm({ data, setData }: Props) {
 
       {/* YEARS / MONTHS */}
 
-      {data.experienceLevel ===
-        "experienced" && (
+      {data.experienceLevel === "experienced" && (
         <div className="exp-duration">
 
           <select
-            value={
-              data.experienceYears || 0
-            }
+            value={data.experienceYears || 0}
             onChange={(e) =>
               setData({
                 ...data,
-                experienceYears:
-                  Number(
-                    e.target.value
-                  ),
+                experienceYears: Number(e.target.value),
               })
             }
           >
-            {[...Array(21)].map(
-              (_, i) => (
-                <option
-                  key={i}
-                  value={i}
-                >
-                  {i} Years
-                </option>
-              )
-            )}
+            {[...Array(21)].map((_, i) => (
+              <option key={i} value={i}>
+                {i} Years
+              </option>
+            ))}
           </select>
 
           <select
-            value={
-              data.experienceMonths || 0
-            }
+            value={data.experienceMonths || 0}
             onChange={(e) =>
               setData({
                 ...data,
-                experienceMonths:
-                  Number(
-                    e.target.value
-                  ),
+                experienceMonths: Number(e.target.value),
               })
             }
           >
-            {[...Array(12)].map(
-              (_, i) => (
-                <option
-                  key={i}
-                  value={i}
-                >
-                  {i} Months
-                </option>
-              )
-            )}
+            {[...Array(12)].map((_, i) => (
+              <option key={i} value={i}>
+                {i} Months
+              </option>
+            ))}
           </select>
 
         </div>
@@ -377,9 +353,7 @@ function PersonalForm({ data, setData }: Props) {
         <PhotoCropper
           image={tempImage}
           onSave={handleCropSave}
-          onClose={() =>
-            setShowCrop(false)
-          }
+          onClose={() => setShowCrop(false)}
         />
       )}
 
