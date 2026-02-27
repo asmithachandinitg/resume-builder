@@ -66,7 +66,7 @@ A modern, customizable Resume Builder built using **React + TypeScript** that al
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/resume-builder.git
+https://github.com/asmithachandinitg/resume-builder.git
 Navigate into the project:
 
 cd resume-builder
