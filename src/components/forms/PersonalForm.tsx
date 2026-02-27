@@ -215,7 +215,7 @@ function PersonalForm({ data, setData }: Props) {
           </label>
 
           <input
-            name="currentCity"
+            name="CurrentCity"
             value={data.CurrentCity}
             onChange={handleChange}
           />
