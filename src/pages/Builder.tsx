@@ -11,7 +11,8 @@ import EducationForm from "../components/forms/EducationForm";
 import SkillsForm from "../components/forms/SkillsForm";
 import SocialForm from "../components/forms/SocialForm";
 import ProjectsForm from "../components/forms/ProjectsForm";
-import CustomSectionForm from "../components/forms/CustomSectionForm";
+import CustomSectionForm, { type CustomSection } from "../components/forms/CustomSectionForm";
+import InternshipForm, { type InternshipEntry } from "../components/forms/InternshipForm";
 
 /* PREVIEW */
 import ResumePreview from "../components/preview/ResumePreview";
@@ -89,6 +90,12 @@ function Builder() {
 
     const [fontSize, setFontSize] =
         useState("medium");
+
+    const [internships, setInternships] =
+        useState<InternshipEntry[]>([]);
+
+    const [customSections, setCustomSections] =
+        useState<CustomSection[]>([]);
 
     /* NEW TAB STATE */
 
@@ -373,6 +380,44 @@ function Builder() {
                                     }
                                 />
                             </AccordionSection>
+
+                            <AccordionSection
+                                title="Internship"
+                                isOpen={
+                                    activeSection === "internship"
+                                }
+                                onToggle={() =>
+                                    setActiveSection(
+                                        activeSection === "internship"
+                                            ? null
+                                            : "internship"
+                                    )
+                                }
+                            >
+                                <InternshipForm
+                                    data={internships}
+                                    setData={setInternships}
+                                />
+                            </AccordionSection>
+
+                            <AccordionSection
+                                title="Custom Sections"
+                                isOpen={
+                                    activeSection === "custom"
+                                }
+                                onToggle={() =>
+                                    setActiveSection(
+                                        activeSection === "custom"
+                                            ? null
+                                            : "custom"
+                                    )
+                                }
+                            >
+                                <CustomSectionForm
+                                    data={customSections}
+                                    setData={setCustomSections}
+                                />
+                            </AccordionSection>
                         </>
                     )}
 
@@ -499,7 +544,7 @@ function Builder() {
 
                                     {/* CUSTOM COLOR */}
                                     <label
-                                        className={`theme-circle custom-color-circle ${
+                                        className={`theme-circle ${
                                             !Object.keys(colorMap).includes(color) ? "active" : ""
                                         }`}
                                         title="Custom color"
@@ -559,6 +604,8 @@ function Builder() {
       color={color}
       fontFamily={fontFamily}
       fontSize={fontSize}
+      internships={internships}
+      customSections={customSections}
     />
   )}
 
@@ -568,6 +615,8 @@ function Builder() {
       color={color}
       fontFamily={fontFamily}
       fontSize={fontSize}
+      internships={internships}
+      customSections={customSections}
     />
   )}
 
@@ -577,6 +626,8 @@ function Builder() {
       color={color}
       fontFamily={fontFamily}
       fontSize={fontSize}
+      internships={internships}
+      customSections={customSections}
     />
   )}
 
