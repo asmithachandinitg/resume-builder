@@ -456,3 +456,22 @@ select:focus {
     height: 28px;
   }
 }
+
+.resume-preview,
+.resume-two {
+  page-break-inside: avoid;
+}
+
+/* If you have sections that should always start fresh */
+.new-page {
+  page-break-before: always;
+}
+
+/* Prevent orphaned content */
+h1, h2, h3, h4 {
+  page-break-after: avoid;
+}
+
+tr, td, img {
+  page-break-inside: avoid;
+}

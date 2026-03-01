@@ -100,3 +100,28 @@
     gap: 2px;
   }
 }
+
+/* In ResumePreview.css / ResumePreviewTwo.css / ResumePreviewATS.css */
+
+.resume-section {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.resume-section-header {
+  page-break-after: avoid;
+  break-after: avoid; /* keeps heading glued to its content */
+}
+
+.resume-section-content {
+  page-break-before: avoid;
+  break-before: avoid;
+}
+
+/* Each entry (job, education, project) stays together */
+.experience-entry,
+.education-entry,
+.project-entry {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}

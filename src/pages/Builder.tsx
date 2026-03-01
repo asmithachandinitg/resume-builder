@@ -126,48 +126,69 @@ function Builder() {
 
     /* ================= PDF ================= */
 
-    const handleDownloadPDF = () => {
-
+const handleDownloadPDF = async () => {
   const fileName = prompt("Enter file name");
 
   if (fileName === null) return;
-
   if (!fileName.trim()) {
-    alert("Please enter file name");
+    alert("Please enter a file name");
     return;
   }
 
+  // ✅ Target the correct element based on active layout
+  const selectorMap = {
+    one: ".resume-preview",
+    two: ".resume-two",
+    ats: ".resume-ats", // update this to match your actual ATS class
+  };
+
   const element = document.querySelector(
-    ".resume-preview, .resume-two"
+    selectorMap[layout]
   ) as HTMLElement;
 
-  if (!element) return;
+  if (!element) {
+    alert("Resume element not found");
+    return;
+  }
+
+  const MARGIN_MM = 10;
 
   const opt = {
-    margin: 0,
+    margin: [MARGIN_MM, MARGIN_MM, MARGIN_MM, MARGIN_MM] as [number, number, number, number], // ✅ fixes TS error
     filename: `${fileName}.pdf`,
-
     image: {
       type: "jpeg" as const,
-      quality: 1,
+      quality: 0.98,
     },
-
     html2canvas: {
       scale: 2,
       useCORS: true,
+      letterRendering: true,
+      scrollX: 0,
+      scrollY: -window.scrollY,
+      windowWidth: element.scrollWidth,
+      windowHeight: element.scrollHeight,
     },
-
     jsPDF: {
       unit: "mm" as const,
       format: "a4" as const,
       orientation: "portrait" as const,
+      compress: true,
+    },
+    pagebreak: {
+      mode: ["avoid-all", "css", "legacy"] as string[],
+      before: ".page-break-before",
+      after: ".page-break-after",
+      avoid: ["tr", "td", "img", ".no-break", "h1", "h2", "h3", "h4", ".section"],
     },
   };
 
-  html2pdf()
-    .set(opt)
-    .from(element)
-    .save();
+  try {
+    await html2pdf().set(opt).from(element).save();
+  } catch (error) {
+    console.error("PDF generation failed:", error);
+    alert("Failed to generate PDF. Please try again.");
+  }
 };
     /* ================= UI ================= */
 
