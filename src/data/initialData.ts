@@ -52,6 +52,34 @@ Improved public engagement through strategic recreational initiatives.`,
 Collaborated with city departments to improve civic services.
 Drafted and supported policies focused on public welfare.`,
     },
+
+    {
+      title: "Deputy Director Of Parks",
+      CurrentCity: "Pawnee",
+      from: "2008-02-01",
+      to: "",
+      current: true,
+      company: "yahoo",
+      subtext: "",
+
+      summary: `Led multiple city park development projects from planning to execution.
+Managed cross-department coordination and community outreach programs.
+Improved public engagement through strategic recreational initiatives.`,
+    },
+
+    {
+      title: "Deputy Director Of Parks",
+      CurrentCity: "Pawnee",
+      from: "2008-02-01",
+      to: "",
+      current: true,
+      company: "amazon",
+      subtext: "",
+
+      summary: `Led multiple city park development projects from planning to execution.
+Managed cross-department coordination and community outreach programs.
+Improved public engagement through strategic recreational initiatives.`,
+    },
   ],
 
   /* ================= EDUCATION ================= */
@@ -75,6 +103,42 @@ Graduated with strong academic and civic performance.`,
 
   projects: [
     {
+      title: "Parks Revamp Initiative",
+      link: "https://pawneeparks.com",
+      from: "",
+      to: "",
+      current: true,
+
+      summary: `Led modernization of city park infrastructure.
+Implemented sustainable recreational facilities.
+Coordinated volunteers and municipal stakeholders.`,
+    },
+
+     {
+      title: "Parks Revamp Initiative",
+      link: "https://pawneeparks.com",
+      from: "",
+      to: "",
+      current: true,
+
+      summary: `Led modernization of city park infrastructure.
+Implemented sustainable recreational facilities.
+Coordinated volunteers and municipal stakeholders.`,
+    },
+
+     {
+      title: "Parks Revamp Initiative",
+      link: "https://pawneeparks.com",
+      from: "",
+      to: "",
+      current: true,
+
+      summary: `Led modernization of city park infrastructure.
+Implemented sustainable recreational facilities.
+Coordinated volunteers and municipal stakeholders.`,
+    },
+
+     {
       title: "Parks Revamp Initiative",
       link: "https://pawneeparks.com",
       from: "",

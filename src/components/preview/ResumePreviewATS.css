@@ -10,6 +10,12 @@
   box-sizing: border-box;
   color: #111827;
   line-height: 1.55;
+
+  background: white;
+  min-height: unset !important;
+  height: auto !important;
+  padding: 40px;
+  width: 794px;
 }
 
 /* ---- HEADER ---- */

@@ -27,7 +27,7 @@ import { MdEdit } from "react-icons/md";
 import { HiDocumentText } from "react-icons/hi2";
 import { IoColorPaletteSharp } from "react-icons/io5";
 import ResumePreviewATS from
-"../components/preview/ResumePreviewATS";
+    "../components/preview/ResumePreviewATS";
 
 /* EMPTY DATA */
 
@@ -79,8 +79,8 @@ function Builder() {
     const [activeSection, setActiveSection] =
         useState<string | null>(null);
 
-  const [layout, setLayout] =
-  useState<"one" | "two" | "ats">("one");
+    const [layout, setLayout] =
+        useState<"one" | "two" | "ats">("one");
 
     const [color, setColor] =
         useState("purple");
@@ -126,70 +126,68 @@ function Builder() {
 
     /* ================= PDF ================= */
 
-const handleDownloadPDF = async () => {
-  const fileName = prompt("Enter file name");
+    const handleDownloadPDF = async () => {
+        const fileName = prompt("Enter file name");
+        if (fileName === null) return;
+        if (!fileName.trim()) {
+            alert("Please enter a file name");
+            return;
+        }
 
-  if (fileName === null) return;
-  if (!fileName.trim()) {
-    alert("Please enter a file name");
-    return;
-  }
+        const selectorMap = {
+            one: ".resume-preview.one-column",
+            two: ".resume-two",
+            ats: ".resume-preview.ats",
+        };
 
-  // ✅ Target the correct element based on active layout
-  const selectorMap = {
-    one: ".resume-preview",
-    two: ".resume-two",
-    ats: ".resume-ats", // update this to match your actual ATS class
-  };
+        const element = document.querySelector(selectorMap[layout]) as HTMLElement;
 
-  const element = document.querySelector(
-    selectorMap[layout]
-  ) as HTMLElement;
+        if (!element) {
+            alert("Resume element not found");
+            return;
+        }
 
-  if (!element) {
-    alert("Resume element not found");
-    return;
-  }
+        await document.fonts.ready;
+        const originalStyle = element.getAttribute("style") || "";
+        element.style.cssText += "; position: relative !important; overflow: visible !important;";
 
-  const MARGIN_MM = 10;
+        const opt = {
+            margin: 10,
+            filename: `${fileName}.pdf`,
+            image: { type: "jpeg" as const, quality: 0.98 },
+            html2canvas: {
+                scale: 2,
+                useCORS: true,
+                letterRendering: true,
+                scrollX: 0,
+                scrollY: 0,
+                backgroundColor: "#ffffff",
+                width: element.offsetWidth,
+                height: element.scrollHeight,
+                windowWidth: element.offsetWidth,
+                windowHeight: element.scrollHeight,
+            },
+            jsPDF: {
+                unit: "mm" as const,
+                format: "a4" as const,
+                orientation: "portrait" as const,
+                compress: true,
+            },
+            pagebreak: {
+                mode: ["css", "legacy"] as string[],
+                avoid: [".block", ".ats-block", "h1", "h2", "h3"],
+            },
+        };
 
-  const opt = {
-    margin: [MARGIN_MM, MARGIN_MM, MARGIN_MM, MARGIN_MM] as [number, number, number, number], // ✅ fixes TS error
-    filename: `${fileName}.pdf`,
-    image: {
-      type: "jpeg" as const,
-      quality: 0.98,
-    },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      letterRendering: true,
-      scrollX: 0,
-      scrollY: -window.scrollY,
-      windowWidth: element.scrollWidth,
-      windowHeight: element.scrollHeight,
-    },
-    jsPDF: {
-      unit: "mm" as const,
-      format: "a4" as const,
-      orientation: "portrait" as const,
-      compress: true,
-    },
-    pagebreak: {
-      mode: ["avoid-all", "css", "legacy"] as string[],
-      before: ".page-break-before",
-      after: ".page-break-after",
-      avoid: ["tr", "td", "img", ".no-break", "h1", "h2", "h3", "h4", ".section"],
-    },
-  };
-
-  try {
-    await html2pdf().set(opt).from(element).save();
-  } catch (error) {
-    console.error("PDF generation failed:", error);
-    alert("Failed to generate PDF. Please try again.");
-  }
-};
+        try {
+            await html2pdf().set(opt).from(element).save();
+        } catch (error) {
+            console.error("PDF generation failed:", error);
+            alert("Failed to generate PDF. Please try again.");
+        } finally {
+            element.setAttribute("style", originalStyle);
+        }
+    };
     /* ================= UI ================= */
 
     return (
@@ -466,14 +464,13 @@ const handleDownloadPDF = async () => {
                                     Two Column
                                 </button>
 
-<button
-  className={`chip ${
-    layout === "ats" ? "active" : ""
-  }`}
-  onClick={() => setLayout("ats")}
->
-  ATS Clean
-</button>
+                                <button
+                                    className={`chip ${layout === "ats" ? "active" : ""
+                                        }`}
+                                    onClick={() => setLayout("ats")}
+                                >
+                                    ATS Clean
+                                </button>
 
                             </div>
                         </div>
@@ -565,9 +562,8 @@ const handleDownloadPDF = async () => {
 
                                     {/* CUSTOM COLOR */}
                                     <label
-                                        className={`theme-circle ${
-                                            !Object.keys(colorMap).includes(color) ? "active" : ""
-                                        }`}
+                                        className={`theme-circle ${!Object.keys(colorMap).includes(color) ? "active" : ""
+                                            }`}
                                         title="Custom color"
                                         style={{
                                             background: !Object.keys(colorMap).includes(color)
@@ -617,42 +613,42 @@ const handleDownloadPDF = async () => {
 
             {/* ========== PREVIEW ========== */}
 
-        <div className="preview-panel">
+            <div className="preview-panel">
 
-  {layout === "one" && (
-    <ResumePreview
-      data={resumeData}
-      color={color}
-      fontFamily={fontFamily}
-      fontSize={fontSize}
-      internships={internships}
-      customSections={customSections}
-    />
-  )}
+                {layout === "one" && (
+                    <ResumePreview
+                        data={resumeData}
+                        color={color}
+                        fontFamily={fontFamily}
+                        fontSize={fontSize}
+                        internships={internships}
+                        customSections={customSections}
+                    />
+                )}
 
-  {layout === "two" && (
-    <ResumePreviewTwo
-      data={resumeData}
-      color={color}
-      fontFamily={fontFamily}
-      fontSize={fontSize}
-      internships={internships}
-      customSections={customSections}
-    />
-  )}
+                {layout === "two" && (
+                    <ResumePreviewTwo
+                        data={resumeData}
+                        color={color}
+                        fontFamily={fontFamily}
+                        fontSize={fontSize}
+                        internships={internships}
+                        customSections={customSections}
+                    />
+                )}
 
-  {layout === "ats" && (
-    <ResumePreviewATS
-      data={resumeData}
-      color={color}
-      fontFamily={fontFamily}
-      fontSize={fontSize}
-      internships={internships}
-      customSections={customSections}
-    />
-  )}
+                {layout === "ats" && (
+                    <ResumePreviewATS
+                        data={resumeData}
+                        color={color}
+                        fontFamily={fontFamily}
+                        fontSize={fontSize}
+                        internships={internships}
+                        customSections={customSections}
+                    />
+                )}
 
-</div>
+            </div>
 
         </div>
     );

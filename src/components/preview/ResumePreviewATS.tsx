@@ -195,43 +195,49 @@ function ResumePreviewATS({
         <>
           <SectionTitle title="Education" />
 
-          {education.map((edu, i) => (
-            <div key={i} className="ats-block">
-
-              <div className="ats-row">
-                <b>{edu.school}</b>
-                <span>
-                  {formatDate(edu.from, edu.to, edu.current)}
-                </span>
-              </div>
-
-              <p style={{ margin: "2px 0" }}>
-                {edu.degree}
-                {(edu as any).location ? ` · ${(edu as any).location}` : ""}
-              </p>
-
-              {(edu as any).subtext && (
-                <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
-                  {(edu as any).subtext}
-                </p>
-              )}
-
-            </div>
-          ))}
+       {education.map((edu, i) => (
+  <div key={i} className="ats-block">
+    <div className="ats-row">
+      <b>{edu.school}</b>
+      <span>{formatDate(edu.from, edu.to, edu.current)}</span>
+    </div>
+    <p style={{ margin: "2px 0" }}>
+      {edu.degree}
+      {(edu as any).location ? ` · ${(edu as any).location}` : ""}
+    </p>
+    {(edu as any).subtext && (
+      <p style={{ margin: "2px 0 4px", color: "#6b7280", fontSize: "0.9em", fontStyle: "italic" }}>
+        {(edu as any).subtext}
+      </p>
+    )}
+    {edu.summary && (
+      <div dangerouslySetInnerHTML={{ __html: edu.summary }} />
+    )}
+  </div>
+))}
         </>
       )}
 
       {/* ===== SKILLS ===== */}
 
-      {skills.technical.length > 0 && (
-        <>
-          <SectionTitle title="Skills" />
-
-          <p>
-            {skills.technical.join(", ")}
-          </p>
-        </>
-      )}
+      {(skills.technical.length > 0 || skills.soft.length > 0 ||
+        skills.languages.length > 0 || skills.interests.length > 0) && (
+          <>
+            <SectionTitle title="Skills" />
+            {skills.showTechnical && skills.technical.length > 0 && (
+              <p><b>Technical:</b> {skills.technical.join(", ")}</p>
+            )}
+            {skills.showSoft && skills.soft.length > 0 && (
+              <p><b>Soft Skills:</b> {skills.soft.join(", ")}</p>
+            )}
+            {skills.showLanguages && skills.languages.length > 0 && (
+              <p><b>Languages:</b> {skills.languages.join(", ")}</p>
+            )}
+            {skills.showInterests && skills.interests.length > 0 && (
+              <p><b>Interests:</b> {skills.interests.join(", ")}</p>
+            )}
+          </>
+        )}
 
       {/* ===== PROJECTS ===== */}
 
