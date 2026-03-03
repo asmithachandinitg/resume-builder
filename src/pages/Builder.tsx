@@ -22,14 +22,17 @@ import ResumePreviewTwo from "../components/preview/ResumePreviewTwo";
 import AccordionSection from "../components/ui/AccordionSection";
 
 /* PDF */
-import html2pdf from "html2pdf.js";
 import { MdEdit } from "react-icons/md";
 import { HiDocumentText } from "react-icons/hi2";
 import { IoColorPaletteSharp } from "react-icons/io5";
 import ResumePreviewATS from
     "../components/preview/ResumePreviewATS";
 
-/* EMPTY DATA */
+    import { pdf } from "@react-pdf/renderer";
+    import ResumePDFOne from "../components/preview/ResumePDFOne";
+    import ResumePDFTwo from "../components/preview/ResumePDFTwo";
+    import ResumePDFATS from "../components/preview/ResumePDFATS";
+
 
 const emptyData: ResumeData = {
     personal: {
@@ -126,68 +129,49 @@ function Builder() {
 
     /* ================= PDF ================= */
 
-    const handleDownloadPDF = async () => {
-        const fileName = prompt("Enter file name");
-        if (fileName === null) return;
-        if (!fileName.trim()) {
-            alert("Please enter a file name");
-            return;
-        }
-
-        const selectorMap = {
-            one: ".resume-preview.one-column",
-            two: ".resume-two",
-            ats: ".resume-preview.ats",
-        };
-
-        const element = document.querySelector(selectorMap[layout]) as HTMLElement;
-
-        if (!element) {
-            alert("Resume element not found");
-            return;
-        }
-
-        await document.fonts.ready;
-        const originalStyle = element.getAttribute("style") || "";
-        element.style.cssText += "; position: relative !important; overflow: visible !important;";
-
-        const opt = {
-            margin: 10,
-            filename: `${fileName}.pdf`,
-            image: { type: "jpeg" as const, quality: 0.98 },
-            html2canvas: {
-                scale: 2,
-                useCORS: true,
-                letterRendering: true,
-                scrollX: 0,
-                scrollY: 0,
-                backgroundColor: "#ffffff",
-                width: element.offsetWidth,
-                height: element.scrollHeight,
-                windowWidth: element.offsetWidth,
-                windowHeight: element.scrollHeight,
-            },
-            jsPDF: {
-                unit: "mm" as const,
-                format: "a4" as const,
-                orientation: "portrait" as const,
-                compress: true,
-            },
-            pagebreak: {
-                mode: ["css", "legacy"] as string[],
-                avoid: [".block", ".ats-block", "h1", "h2", "h3"],
-            },
-        };
-
-        try {
-            await html2pdf().set(opt).from(element).save();
-        } catch (error) {
-            console.error("PDF generation failed:", error);
-            alert("Failed to generate PDF. Please try again.");
-        } finally {
-            element.setAttribute("style", originalStyle);
-        }
+  const handleDownloadPDF = async () => {
+    const fileName = prompt("Enter file name");
+    if (fileName === null) return;
+    if (!fileName.trim()) {
+      alert("Please enter a file name");
+      return;
+    }
+  
+    // Pick the right PDF template based on active layout
+    let docElement;
+  
+    const sharedProps = {
+      data: resumeData,
+      color,
+      fontFamily,
+      fontSize,
+      internships,
+      customSections,
     };
+  
+    if (layout === "one") {
+      docElement = <ResumePDFOne {...sharedProps} />;
+    } else if (layout === "two") {
+      docElement = <ResumePDFTwo {...sharedProps} />;
+    } else {
+      docElement = <ResumePDFATS {...sharedProps} />;
+    }
+  
+    try {
+      const blob = await pdf(docElement).toBlob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${fileName.trim()}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("PDF generation failed:", error);
+      alert("Failed to generate PDF. Please try again.");
+    }
+  };
     /* ================= UI ================= */
 
     return (

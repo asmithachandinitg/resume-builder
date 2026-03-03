@@ -15,11 +15,11 @@ export const initialData: ResumeData = {
     CurrentCity: "Pawnee",
 
     about: `My name is Leslie Knope. I am a passionate, over-achieving government employee who believes the government's #1 job is serving the people. By pairing the right people with the right messaging at the right time, the parks department and your local government can make the world a better place for everyone! I have met Joe Biden, and one day I will become the first female President of the United States.`,
-  experienceLevel: "experienced",
-experienceYears: 0,
-experienceMonths: 0,
+    experienceLevel: "experienced",
+    experienceYears: 0,
+    experienceMonths: 0,
 
-  
+
   },
 
   /* ================= EXPERIENCE ================= */
@@ -92,7 +92,6 @@ Improved public engagement through strategic recreational initiatives.`,
       from: "2013-06-01",
       to: "2017-12-01",
       current: false,
-
       summary: `Specialized in Public Policy and Administration.
 Participated in student governance and leadership programs.
 Graduated with strong academic and civic performance.`,
@@ -114,7 +113,7 @@ Implemented sustainable recreational facilities.
 Coordinated volunteers and municipal stakeholders.`,
     },
 
-     {
+    {
       title: "Parks Revamp Initiative",
       link: "https://pawneeparks.com",
       from: "",
@@ -126,7 +125,7 @@ Implemented sustainable recreational facilities.
 Coordinated volunteers and municipal stakeholders.`,
     },
 
-     {
+    {
       title: "Parks Revamp Initiative",
       link: "https://pawneeparks.com",
       from: "",
@@ -138,7 +137,7 @@ Implemented sustainable recreational facilities.
 Coordinated volunteers and municipal stakeholders.`,
     },
 
-     {
+    {
       title: "Parks Revamp Initiative",
       link: "https://pawneeparks.com",
       from: "",
@@ -176,12 +175,12 @@ Coordinated volunteers and municipal stakeholders.`,
       "Community Development",
     ],
 
-     showTechnical: true,
-  showSoft: true,
-  showLanguages: true,
-  showInterests: false,
+    showTechnical: true,
+    showSoft: true,
+    showLanguages: true,
+    showInterests: false,
   },
-  
+
   /* ================= SOCIAL ================= */
 
   social: {

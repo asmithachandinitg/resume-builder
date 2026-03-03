@@ -15,10 +15,10 @@ import type { CustomSection } from "../forms/CustomSectionForm";
 import type { InternshipEntry } from "../forms/InternshipForm";
 
 const fontFamilyMap: Record<string, string> = {
-  Satoshi: "Satoshi, sans-serif",
-  Inter: "Inter, sans-serif",
-  Poppins: "Poppins, sans-serif",
-  Roboto: "Roboto, sans-serif",
+  Inter: "Helvetica",
+  Roboto: "Helvetica",
+  Poppins: "Helvetica",
+  Satoshi: "Helvetica",
 };
 
 const fontSizeMap: Record<string, string> = {
