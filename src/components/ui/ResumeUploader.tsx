@@ -5,7 +5,7 @@
 
 import { useState, useRef } from "react";
 import type { ResumeData } from "../../types/resume";
-import { parseResumeText } from "../../utils/resumeParser";
+// import { parseResumeText } from "../../utils/resumeParser";
 import "./ResumeUploader.css";
 
 // pdfjs-dist setup
@@ -71,10 +71,10 @@ export default function ResumeUploader({ onParsed }: Props) {
       const rawText = await extractTextFromPDF(file);
 
       setStatus("parsing");
-      const parsed = parseResumeText(rawText);
+      //const parsed = parseResumeText(rawText);
 
       setStatus("done");
-      onParsed(parsed);
+      //onParsed(parsed);
     } catch (err) {
       console.error(err);
       setErrorMsg("Could not read this PDF. Try a different file.");
