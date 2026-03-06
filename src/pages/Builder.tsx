@@ -26,8 +26,7 @@ import { MdOutlineScore } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import { HiDocumentText } from "react-icons/hi2";
 import { IoColorPaletteSharp } from "react-icons/io5";
-import ResumeUploader from "../components/ui/ResumeUploader";
-import { MdUpload } from "react-icons/md";
+
 import ResumePreviewATS from
     "../components/preview/ResumePreviewATS";
 
