@@ -20,18 +20,21 @@ import ResumePreviewTwo from "../components/preview/ResumePreviewTwo";
 
 /* ACCORDION */
 import AccordionSection from "../components/ui/AccordionSection";
-
+import ATSChecker from "../components/ui/ATSChecker";
+import { MdOutlineScore } from "react-icons/md";
 /* PDF */
 import { MdEdit } from "react-icons/md";
 import { HiDocumentText } from "react-icons/hi2";
 import { IoColorPaletteSharp } from "react-icons/io5";
+import ResumeUploader from "../components/ui/ResumeUploader";
+import { MdUpload } from "react-icons/md";
 import ResumePreviewATS from
     "../components/preview/ResumePreviewATS";
 
-    import { pdf } from "@react-pdf/renderer";
-    import ResumePDFOne from "../components/preview/ResumePDFOne";
-    import ResumePDFTwo from "../components/preview/ResumePDFTwo";
-    import ResumePDFATS from "../components/preview/ResumePDFATS";
+import { pdf } from "@react-pdf/renderer";
+import ResumePDFOne from "../components/preview/ResumePDFOne";
+import ResumePDFTwo from "../components/preview/ResumePDFTwo";
+import ResumePDFATS from "../components/preview/ResumePDFATS";
 
 
 const emptyData: ResumeData = {
@@ -104,7 +107,7 @@ function Builder() {
 
     const [activeTab, setActiveTab] =
         useState<
-            "editor" | "templates" | "formatting"
+            "editor" | "templates" | "formatting" | "ats"
         >("editor");
 
     /* COLOR MAP */
@@ -129,49 +132,49 @@ function Builder() {
 
     /* ================= PDF ================= */
 
-  const handleDownloadPDF = async () => {
-    const fileName = prompt("Enter file name");
-    if (fileName === null) return;
-    if (!fileName.trim()) {
-      alert("Please enter a file name");
-      return;
-    }
-  
-    // Pick the right PDF template based on active layout
-    let docElement;
-  
-    const sharedProps = {
-      data: resumeData,
-      color,
-      fontFamily,
-      fontSize,
-      internships,
-      customSections,
+    const handleDownloadPDF = async () => {
+        const fileName = prompt("Enter file name");
+        if (fileName === null) return;
+        if (!fileName.trim()) {
+            alert("Please enter a file name");
+            return;
+        }
+
+        // Pick the right PDF template based on active layout
+        let docElement;
+
+        const sharedProps = {
+            data: resumeData,
+            color,
+            fontFamily,
+            fontSize,
+            internships,
+            customSections,
+        };
+
+        if (layout === "one") {
+            docElement = <ResumePDFOne {...sharedProps} />;
+        } else if (layout === "two") {
+            docElement = <ResumePDFTwo {...sharedProps} />;
+        } else {
+            docElement = <ResumePDFATS {...sharedProps} />;
+        }
+
+        try {
+            const blob = await pdf(docElement).toBlob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `${fileName.trim()}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("PDF generation failed:", error);
+            alert("Failed to generate PDF. Please try again.");
+        }
     };
-  
-    if (layout === "one") {
-      docElement = <ResumePDFOne {...sharedProps} />;
-    } else if (layout === "two") {
-      docElement = <ResumePDFTwo {...sharedProps} />;
-    } else {
-      docElement = <ResumePDFATS {...sharedProps} />;
-    }
-  
-    try {
-      const blob = await pdf(docElement).toBlob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${fileName.trim()}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("PDF generation failed:", error);
-      alert("Failed to generate PDF. Please try again.");
-    }
-  };
     /* ================= UI ================= */
 
     return (
@@ -217,6 +220,21 @@ function Builder() {
                     >
                         <IoColorPaletteSharp style={{ color: "#e25b0dff" }} /> Formatting
                     </button>
+
+                    <button
+                        className={`tab ${activeTab === "ats" ? "active" : ""}`}
+                        onClick={() => setActiveTab("ats")}
+                    >
+                        <MdOutlineScore style={{ color: "#059669" }} /> ATS
+                    </button>
+
+                    {/* <button
+                        className={`tab ${activeTab === "upload" ? "active" : ""}`}
+                        onClick={() => setActiveTab("upload")}
+                    >
+                        <MdUpload style={{ color: "#2563eb" }} /> Import
+                    </button> */}
+
                 </div>
 
                 {/* ========== EDITOR TAB ========== */}
@@ -582,6 +600,27 @@ function Builder() {
 
                     )}
 
+                    {activeTab === "ats" && (
+                        <ATSChecker
+                            resumeData={resumeData}
+                            internships={internships}
+                            customSections={customSections}
+                        />
+                    )}
+                    {/* {activeTab === "upload" && (
+                        <ResumeUploader
+                            onParsed={(parsed) => {
+                                setResumeData((prev) => ({
+                                    ...prev,
+                                    ...parsed,
+                                    personal: { ...prev.personal, ...parsed.personal },
+                                    skills: { ...prev.skills, ...parsed.skills },
+                                    social: { ...prev.social, ...parsed.social },
+                                }));
+                                setActiveTab("editor");
+                            }}
+                        />
+                    )} */}
                     {/* DOWNLOAD */}
 
                     <div className="builder-actions">
